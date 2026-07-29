@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eduardo Marín · Estudiante de Odontología</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F1ECE1;
+    --bg-alt:#E7E0D0;
+    --ink:#221F1A;
+    --ink-soft:#5A5647;
+    --bamboo:#6F7F5E;
+    --bamboo-dark:#3E4A34;
+    --line:#CBC2AB;
+    --card:#FAF7EF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-weight:300;
+    line-height:1.7;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Shippori Mincho', serif;
+    font-weight:600;
+    letter-spacing:0.02em;
+    color:var(--ink);
+  }
+  a{color:inherit;}
+
+  /* --- decorative bamboo SVG, reused as signature element --- */
+  .bamboo-divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    margin:0 auto;
+    width:fit-content;
+  }
+  .bamboo-divider .stem{width:64px;height:1px;background:var(--line);}
+  .bamboo-divider svg{width:26px;height:26px;opacity:0.8;}
+
+  .bg-bamboo{
+    position:fixed;
+    top:0; right:0;
+    height:100vh;
+    width:auto;
+    opacity:0.09;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  /* --- nav --- */
+  header.nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:22px 6vw;
+    z-index:10;
+    background:linear-gradient(var(--bg) 60%, transparent);
+    font-size:0.85rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+  }
+  header.nav .mark{font-family:'Shippori Mincho', serif; font-size:1rem; letter-spacing:0.05em;}
+  header.nav nav a{
+    margin-left:28px;
+    text-decoration:none;
+    color:var(--ink-soft);
+    border-bottom:1px solid transparent;
+    transition:border-color .25s, color .25s;
+  }
+  header.nav nav a:hover{color:var(--bamboo-dark); border-color:var(--bamboo);}
+  @media (max-width:640px){ header.nav nav{display:none;} }
+
+  section{
+    position:relative;
+    z-index:1;
+    padding:110px 8vw;
+    max-width:1100px;
+    margin:0 auto;
+  }
+
+  /* --- hero --- */
+  .hero{
+    min-height:92vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding-top:140px;
+  }
+  .hero .eyebrow{
+    color:var(--bamboo-dark);
+    font-size:0.8rem;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 7vw, 5rem);
+    line-height:1.05;
+    max-width:14ch;
+  }
+  .hero .role{
+    margin-top:18px;
+    font-size:1.15rem;
+    color:var(--ink-soft);
+    font-weight:400;
+  }
+  .hero blockquote{
+    margin-top:52px;
+    max-width:520px;
+    font-family:'Shippori Mincho', serif;
+    font-size:1.3rem;
+    font-style:italic;
+    color:var(--bamboo-dark);
+    border-left:2px solid var(--bamboo);
+    padding-left:22px;
+  }
+  .hero blockquote span{
+    display:block;
+    margin-top:10px;
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-style:normal;
+    font-size:0.8rem;
+    letter-spacing:0.08em;
+    color:var(--ink-soft);
+  }
+
+  .eyebrow-section{
+    font-size:0.78rem;
+    letter-spacing:0.24em;
+    text-transform:uppercase;
+    color:var(--bamboo-dark);
+    margin-bottom:14px;
+  }
+  .section-title{
+    font-size:clamp(1.6rem, 3.4vw, 2.3rem);
+    margin-bottom:44px;
+    max-width:20ch;
+  }
+
+  /* --- quien soy --- */
+  .who-grid{
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:60px;
+    align-items:start;
+  }
+  .who-grid p{color:var(--ink-soft); font-size:1.02rem;}
+  .who-grid p + p{margin-top:16px;}
+  .facts{
+    border-top:1px solid var(--line);
+  }
+  .facts .row{
+    display:flex;
+    justify-content:space-between;
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+    font-size:0.92rem;
+  }
+  .facts .row .label{color:var(--ink-soft); letter-spacing:0.05em;}
+  .facts .row .value{font-family:'Shippori Mincho', serif; font-weight:500;}
+  @media (max-width:800px){ .who-grid{grid-template-columns:1fr;} }
+
+  /* --- por que elegirme --- */
+  .reasons{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .reason{
+    background:var(--card);
+    padding:38px 30px;
+  }
+  .reason .tag{
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--bamboo-dark);
+    margin-bottom:16px;
+  }
+  .reason h3{
+    font-size:1.15rem;
+    margin-bottom:12px;
+  }
+  .reason p{color:var(--ink-soft); font-size:0.95rem;}
+  @media (max-width:800px){ .reasons{grid-template-columns:1fr;} }
+
+  /* --- tratamientos --- */
+  .treat-list{
+    display:flex;
+    flex-direction:column;
+  }
+  .treat-item{
+    display:grid;
+    grid-template-columns:110px 1fr auto;
+    gap:24px;
+    align-items:center;
+    padding:26px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .treat-item:first-child{border-top:1px solid var(--line);}
+  .treat-item .stage{
+    font-family:'Shippori Mincho', serif;
+    color:var(--bamboo-dark);
+    font-size:0.95rem;
+  }
+  .treat-item h3{font-size:1.15rem; margin-bottom:4px;}
+  .treat-item p{color:var(--ink-soft); font-size:0.92rem; max-width:46ch;}
+  .treat-item .badge{
+    font-size:0.75rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--bamboo-dark);
+    border:1px solid var(--bamboo);
+    padding:6px 12px;
+    border-radius:2px;
+    white-space:nowrap;
+  }
+  @media (max-width:640px){
+    .treat-item{grid-template-columns:1fr; gap:8px;}
+    .treat-item .badge{justify-self:start;}
+  }
+
+  /* --- proceso --- */
+  .steps{
+    counter-reset:step;
+  }
+  .step{
+    display:grid;
+    grid-template-columns:70px 1fr;
+    gap:24px;
+    padding-bottom:40px;
+    position:relative;
+  }
+  .step:not(:last-child)::before{
+    content:"";
+    position:absolute;
+    left:34px;
+    top:44px;
+    bottom:0;
+    width:1px;
+    background:var(--line);
+  }
+  .step .num{
+    counter-increment:step;
+    font-family:'Shippori Mincho', serif;
+    font-size:1.3rem;
+    color:var(--bamboo);
+    display:flex;
+    align-items:flex-start;
+  }
+  .step .num::before{content:"0" counter(step);}
+  .step h3{font-size:1.08rem; margin-bottom:6px;}
+  .step p{color:var(--ink-soft); font-size:0.95rem;}
+  .cost-table{
+    margin-top:26px;
+    border-top:1px solid var(--line);
+  }
+  .cost-table .row{
+    display:flex;
+    justify-content:space-between;
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+    font-size:0.92rem;
+  }
+  .cost-table .row .value{font-family:'Shippori Mincho', serif;}
+  .note{
+    margin-top:18px;
+    font-size:0.85rem;
+    color:var(--ink-soft);
+    font-style:italic;
+  }
+
+  /* --- contacto --- */
+  .contact-wrap{
+    background:var(--bamboo-dark);
+    color:var(--card);
+  }
+  .contact-wrap .section-title, .contact-wrap .eyebrow-section{color:var(--card);}
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+  }
+  .contact-grid .row{
+    padding:16px 0;
+    border-bottom:1px solid rgba(250,247,239,0.25);
+    font-size:0.95rem;
+    display:flex;
+    justify-content:space-between;
+  }
+  .contact-grid .label{opacity:0.7; letter-spacing:0.05em;}
+  @media (max-width:700px){ .contact-grid{grid-template-columns:1fr;} }
+
+  footer{
+    text-align:center;
+    padding:40px 8vw 60px;
+    font-size:0.8rem;
+    color:var(--ink-soft);
+    background:var(--bamboo-dark);
+  }
+  footer p{opacity:0.7;}
+
+  .fade-in{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity .8s ease, transform .8s ease;
+  }
+  .fade-in.visible{opacity:1; transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    .fade-in{opacity:1; transform:none; transition:none;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<svg class="bg-bamboo" viewBox="0 0 200 900" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <g stroke="#3E4A34" stroke-width="3" fill="none">
+    <line x1="40" y1="0" x2="40" y2="900"/>
+    <line x1="30" y1="90" x2="50" y2="90"/>
+    <line x1="30" y1="220" x2="50" y2="220"/>
+    <line x1="30" y1="360" x2="50" y2="360"/>
+    <line x1="30" y1="500" x2="50" y2="500"/>
+    <line x1="30" y1="640" x2="50" y2="640"/>
+    <line x1="30" y1="780" x2="50" y2="780"/>
+    <line x1="120" y1="0" x2="120" y2="900"/>
+    <line x1="108" y1="150" x2="132" y2="150"/>
+    <line x1="108" y1="300" x2="132" y2="300"/>
+    <line x1="108" y1="450" x2="132" y2="450"/>
+    <line x1="108" y1="600" x2="132" y2="600"/>
+    <line x1="108" y1="750" x2="132" y2="750"/>
+  </g>
+</svg>
+
+<header class="nav">
+  <div class="mark">Eduardo Marín</div>
+  <nav>
+    <a href="#quien-soy">Quién soy</a>
+    <a href="#elegirme">Por qué elegirme</a>
+    <a href="#tratamientos">Tratamientos</a>
+    <a href="#proceso">Proceso</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">Estudiante de Odontología</div>
+  <h1>Eduardo Marín</h1>
+  <p class="role">Tercer cuatrimestre · Clínica escolar de la Universidad Privada del Estado de México</p>
+  <blockquote>
+    Vencer a mi versión más débil, tratamiento tras tratamiento.
+    <span>— la idea que guía cada práctica clínica</span>
+  </blockquote>
+</section>
+
+<div class="bamboo-divider">
+  <div class="stem"></div>
+  <svg viewBox="0 0 24 24"><g stroke="#6F7F5E" stroke-width="1.6" fill="none"><line x1="12" y1="2" x2="12" y2="22"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="14" x2="16" y2="14"/></g></svg>
+  <div class="stem"></div>
+</div>
+
+<section id="quien-soy" class="fade-in">
+  <div class="eyebrow-section">01 · Quién soy</div>
+  <h2 class="section-title">Formación clínica con una raíz artística</h2>
+  <div class="who-grid">
+    <div>
+      <p>Curso el tercer cuatrimestre de Odontología en la Universidad Privada del Estado de México, donde combino la formación clínica con un interés particular por el detalle visual: proporción, color y forma en cada restauración.</p>
+      <p>Antes de la carrera, me formé en distintos concursos de arte, una base que hoy traslado directamente a la odontología estética: entender una sonrisa como una composición, no solo como una serie de piezas dentales.</p>
+    </div>
+    <div class="facts">
+      <div class="row"><span class="label">Nombre</span><span class="value">Eduardo Marín</span></div>
+      <div class="row"><span class="label">Programa</span><span class="value">Odontología</span></div>
+      <div class="row"><span class="label">Etapa</span><span class="value">3.º cuatrimestre</span></div>
+      <div class="row"><span class="label">Universidad</span><span class="value">Univ. Privada del Edo. de México</span></div>
+      <div class="row"><span class="label">Enfoque</span><span class="value">Odontología estética</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="bamboo-divider">
+  <div class="stem"></div>
+  <svg viewBox="0 0 24 24"><g stroke="#6F7F5E" stroke-width="1.6" fill="none"><line x1="12" y1="2" x2="12" y2="22"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="14" x2="16" y2="14"/></g></svg>
+  <div class="stem"></div>
+</div>
+
+<section id="elegirme" class="fade-in">
+  <div class="eyebrow-section">02 · Por qué elegirme</div>
+  <h2 class="section-title">Tres razones para agendar tu cita conmigo</h2>
+  <div class="reasons">
+    <div class="reason">
+      <div class="tag">Trato al paciente</div>
+      <h3>Atención cercana y clara</h3>
+      <p>Explico cada procedimiento antes de realizarlo y mantengo un trato paciente y cuidadoso durante toda la consulta.</p>
+    </div>
+    <div class="reason">
+      <div class="tag">Capacitación extra</div>
+      <h3>Formación en emergencias y salud</h3>
+      <p>Cuento con capacitación de la Asociación Panamericana de la Salud, Protección Civil y Rescate Agreste, un respaldo adicional ante cualquier imprevisto durante tu tratamiento.</p>
+    </div>
+    <div class="reason">
+      <div class="tag">Sensibilidad estética</div>
+      <h3>Ojo entrenado para la estética</h3>
+      <p>Con antecedentes en concursos artísticos, aplico ese criterio de proporción y color directamente al trabajo con resinas.</p>
+    </div>
+  </div>
+</section>
+
+<div class="bamboo-divider">
+  <div class="stem"></div>
+  <svg viewBox="0 0 24 24"><g stroke="#6F7F5E" stroke-width="1.6" fill="none"><line x1="12" y1="2" x2="12" y2="22"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="14" x2="16" y2="14"/></g></svg>
+  <div class="stem"></div>
+</div>
+
+<section id="tratamientos" class="fade-in">
+  <div class="eyebrow-section">03 · En qué estoy trabajando</div>
+  <h2 class="section-title">Tratamientos que realizo actualmente</h2>
+  <div class="treat-list">
+    <div class="treat-item">
+      <div class="stage">Preventivo</div>
+      <div>
+        <h3>Limpiezas dentales (profilaxis)</h3>
+        <p>Eliminación de placa y sarro para mantener la salud de encías y dientes.</p>
+      </div>
+      <div class="badge">Disponible</div>
+    </div>
+    <div class="treat-item">
+      <div class="stage">Estético</div>
+      <div>
+        <h3>Resinas estéticas</h3>
+        <p>Restauraciones de color y forma naturales; es mi área de mayor fortaleza dentro de la clínica.</p>
+      </div>
+      <div class="badge">Área fuerte</div>
+    </div>
+  </div>
+</section>
+
+<div class="bamboo-divider">
+  <div class="stem"></div>
+  <svg viewBox="0 0 24 24"><g stroke="#6F7F5E" stroke-width="1.6" fill="none"><line x1="12" y1="2" x2="12" y2="22"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="14" x2="16" y2="14"/></g></svg>
+  <div class="stem"></div>
+</div>
+
+<section id="proceso" class="fade-in">
+  <div class="eyebrow-section">04 · Cómo funciona</div>
+  <h2 class="section-title">El proceso, paso a paso</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="num"></div>
+      <div>
+        <h3>Agenda tu cita</h3>
+        <p>Escríbeme para reservar un horario disponible dentro de mi día de atención en la clínica escolar.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num"></div>
+      <div>
+        <h3>Apertura de expediente</h3>
+        <p>El día de tu cita se cubre, por única vez, la cuota de apertura de expediente clínico, que queda registrado de forma permanente.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num"></div>
+      <div>
+        <h3>Tratamiento</h3>
+        <p>Se realiza el procedimiento acordado; cada tratamiento tiene un costo independiente de la cuota de expediente.</p>
+      </div>
+    </div>
+  </div>
+  <div class="cost-table">
+    <div class="row"><span class="label">Apertura de expediente (único pago)</span><span class="value">$70 MXN</span></div>
+    <div class="row"><span class="label">Limpieza dental (profilaxis)</span><span class="value">$20 MXN</span></div>
+    <div class="row"><span class="label">Resina</span><span class="value">$100 MXN</span></div>
+  </div>
+  <p class="note">Cualquier aportación adicional queda a criterio y gusto del paciente.</p>
+</section>
+
+<section id="contacto" class="contact-wrap fade-in">
+  <div class="eyebrow-section">05 · Agenda y contacto</div>
+  <h2 class="section-title">Reserva tu lugar</h2>
+  <div class="contact-grid">
+    <div>
+      <div class="row"><span class="label">Atención</span><span>Viernes</span></div>
+      <div class="row"><span class="label">Horario</span><span>11:00 a.m. – 1:00 p.m.</span></div>
+      <div class="row"><span class="label">Sede</span><span>Clínica escolar</span></div>
+    </div>
+    <div>
+      <div class="row"><span class="label">Teléfono</span><span>56 35 32 2465</span></div>
+      <div class="row"><span class="label">Programa</span><span>Odontología, 3.º cuatrimestre</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Eduardo Marín · Ejercicio académico de comunicación, carrera de Odontología</p>
+</footer>
+
+<script>
+  const items = document.querySelectorAll('.fade-in');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); } });
+  }, {threshold:0.15});
+  items.forEach(i=>io.observe(i));
+</script>
+
+</body>
+</html>
